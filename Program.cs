@@ -53,7 +53,7 @@ namespace EfCoreMsSqlData3
                 {
                     // Note: no prices, therefore LEFT JOIN when included in query of occurrences will return nulls
 
-                    for (int i = 0; i < 10; i++)
+                    for (var i = 0; i < 10; i++)
                     {
                         db.Occurrences.Add(new Occurrence { Title = "Test " + i });
                     }
@@ -66,7 +66,7 @@ namespace EfCoreMsSqlData3
 
             using (EventsDbContext db = new())
             {
-                foreach (Occurrence? o in db.Occurrences.Include(o => o.Prices))
+                foreach (var o in db.Occurrences.Include(o => o.Prices))
                 {
                     Console.WriteLine(o.Title + " (" + o.Timestamp + ")");
                 }
@@ -76,7 +76,7 @@ namespace EfCoreMsSqlData3
 
             using (EventsDbContext db = new())
             {
-                await foreach (Occurrence? o in db.Occurrences.Include(o => o.Prices).AsAsyncEnumerable())
+                await foreach (var o in db.Occurrences.Include(o => o.Prices).AsAsyncEnumerable())
                 {
                     Console.WriteLine(o.Title + " (" + o.Timestamp + ")");
                 }
